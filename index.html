@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Черновик сайта «ШарыВГороде». Воздушные шары в Видном и Ленинском городском округе.">
+  <title>ШарыВГороде — воздушные шары в Видном</title>
+  <style>
+    :root {
+      --paper: #fffaf7;
+      --cream: #f7ede7;
+      --rose: #bc7778;
+      --rose-dark: #8d5055;
+      --ink: #342c2c;
+      --muted: #746767;
+      --line: rgba(77, 53, 53, .13);
+      --white: #fff;
+      --shadow: 0 24px 70px rgba(108, 68, 62, .12);
+      --radius: 30px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background: var(--paper);
+      font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .draft {
+      padding: 8px 16px;
+      color: #6e4b40;
+      background: #f4ddd2;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: .04em;
+    }
+    .shell { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    header {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 250, 247, .9);
+      backdrop-filter: blur(16px);
+    }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 700; }
+    .brand img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; mix-blend-mode: multiply; }
+    .nav-links { display: flex; gap: 26px; align-items: center; color: var(--muted); }
+    .nav-links a { text-decoration: none; font-size: 14px; }
+    .button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      border: 1px solid var(--rose-dark);
+      border-radius: 999px;
+      color: var(--white);
+      background: var(--rose-dark);
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 12px 24px rgba(141, 80, 85, .18);
+    }
+    .button.secondary { color: var(--rose-dark); background: transparent; box-shadow: none; }
+
+    .hero { padding: 34px 0 54px; }
+    .hero-card {
+      min-height: 660px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .75);
+      border-radius: 42px;
+      background: #f3d9cb url("assets/hero-balloons.png") center/cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+    .hero-copy { position: relative; z-index: 1; max-width: 620px; padding: clamp(34px, 6vw, 80px); }
+    .eyebrow { margin: 0 0 18px; color: var(--rose-dark); font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    h1, h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 500; line-height: .98; }
+    h1 { max-width: 650px; font-size: clamp(50px, 7vw, 92px); letter-spacing: -.055em; }
+    h2 { font-size: clamp(38px, 5vw, 64px); letter-spacing: -.04em; }
+    .lead { max-width: 500px; margin: 26px 0 30px; color: #5f5050; font-size: 18px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .micro { margin-top: 18px; color: #765e5e; font-size: 13px; }
+
+    section { padding: 90px 0; }
+    .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: end; margin-bottom: 38px; }
+    .section-head p { max-width: 520px; margin: 0; color: var(--muted); }
+    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .price-card {
+      display: flex;
+      min-height: 265px;
+      flex-direction: column;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .price-card.featured { color: #fff9f5; background: var(--rose-dark); }
+    .price-card h3 { margin: 0 0 18px; font: 500 27px/1.1 Georgia, serif; }
+    .price-card ul { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+    .price-card li { display: flex; justify-content: space-between; gap: 18px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+    .price-card.featured li { border-color: rgba(255,255,255,.18); }
+    .price-card strong { white-space: nowrap; }
+    .note { margin: auto 0 0; padding-top: 22px; color: var(--muted); font-size: 13px; }
+    .featured .note { color: #ead8d7; }
+
+    .delivery { background: var(--cream); }
+    .delivery-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; }
+    .panel { padding: clamp(28px, 5vw, 56px); border-radius: 34px; background: var(--white); }
+    .panel h3 { margin: 0 0 24px; font: 500 36px/1.05 Georgia, serif; }
+    .facts { display: grid; gap: 16px; }
+    .fact { padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .fact b { display: block; margin-bottom: 4px; }
+    .fact span { color: var(--muted); }
+    .soft { background: #d8e0e3; }
+    .soft p { color: #4f5b60; }
+
+    details { border: 1px solid var(--line); border-radius: 22px; background: var(--white); }
+    summary { cursor: pointer; padding: 22px 24px; font-weight: 800; }
+    .details-body { padding: 0 24px 24px; color: var(--muted); }
+    .details-body ul { margin: 12px 0 0; padding-left: 20px; }
+    .warning { margin-top: 18px; padding: 16px; border-radius: 16px; background: #fff1dc; color: #6b4b22; }
+
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 32px; align-items: stretch; }
+    .portrait-placeholder {
+      min-height: 470px;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      border: 1px dashed #b49d99;
+      border-radius: 34px;
+      color: var(--muted);
+      background: linear-gradient(145deg, #efe3dd, #f9f3ef);
+      text-align: center;
+    }
+    .about-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(20px, 4vw, 54px); }
+    .about-copy p { max-width: 570px; color: var(--muted); font-size: 18px; }
+
+    .order-card {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 30px;
+      align-items: center;
+      padding: clamp(32px, 7vw, 78px);
+      border-radius: 40px;
+      color: #fff;
+      background: var(--rose-dark);
+    }
+    .order-card h2 { max-width: 650px; }
+    .order-card p { color: #ead8d7; }
+    .contact-box { padding: 24px; border-radius: 24px; color: var(--ink); background: #fff9f5; }
+    .contact-box b { display: block; margin-bottom: 8px; }
+    footer { padding: 0 0 44px; color: var(--muted); font-size: 13px; }
+    footer .shell { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding-top: 24px; }
+
+    @media (max-width: 860px) {
+      .nav-links a:not(.button) { display: none; }
+      .hero-card { min-height: 720px; grid-template-columns: 1fr; align-items: end; background-position: 64% center; }
+      .hero-card::before { content: ""; position: absolute; inset: auto 0 0; height: 64%; background: linear-gradient(transparent, rgba(247, 226, 216, .96) 42%); }
+      .hero-card { position: relative; }
+      .hero-copy { padding-top: 300px; }
+      .section-head, .delivery-grid, .about-grid, .order-card { grid-template-columns: 1fr; }
+      .price-grid { grid-template-columns: 1fr 1fr; }
+      .portrait-placeholder { min-height: 340px; }
+    }
+    @media (max-width: 590px) {
+      .shell { width: min(100% - 24px, 1160px); }
+      nav { min-height: 64px; }
+      .brand span { font-size: 14px; }
+      .brand img { width: 40px; height: 40px; }
+      .nav-links { display: none; }
+      .hero { padding-top: 12px; }
+      .hero-card { min-height: 650px; border-radius: 28px; background-position: 68% center; }
+      .hero-copy { padding: 270px 24px 32px; }
+      h1 { max-width: 100%; font-size: clamp(42px, 13vw, 54px); overflow-wrap: anywhere; }
+      .lead { margin: 18px 0 22px; font-size: 16px; }
+      .actions .button { width: 100%; }
+      section { padding: 64px 0; }
+      .section-head { margin-bottom: 26px; }
+      .price-grid { grid-template-columns: 1fr; }
+      .price-card { min-height: auto; }
+      .panel, .order-card { border-radius: 26px; }
+      footer .shell { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="draft">Рабочий шаблон · не опубликован · условия скидок требуют подтверждения</div>
+  <header>
+    <nav class="shell" aria-label="Основная навигация">
+      <a class="brand" href="#top"><img src="assets/logo-original.jpg" alt="Логотип «ШарыВГороде»: воздушный шар с глобусом"><span>ШарыВГороде</span></a>
+      <div class="nav-links">
+        <a href="#prices">Цены</a><a href="#delivery">Доставка</a><a href="#about">О Юлии</a><a class="button" href="#order">Как заказать</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Воздушные шары · Видное</p>
+          <h1>Ваш праздник станет чуточку выше</h1>
+          <p class="lead">Шары, букеты и праздничные композиции с доставкой по Ленинскому городскому округу.</p>
+          <div class="actions"><a class="button" href="#prices">Посмотреть цены</a><a class="button secondary" href="#order">Обсудить заказ</a></div>
+          <p class="micro">Обработка и лента уже входят в стоимость обычных шаров.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="prices">
+      <div class="shell">
+        <div class="section-head"><h2>Небольшой, понятный прайс</h2><p>Без длинного каталога: основные варианты собраны на одной странице. Другие фольгированные фигуры можно уточнить при заказе.</p></div>
+        <div class="price-grid">
+          <article class="price-card"><h3>Шары</h3><ul><li><span>Однотонный</span><strong>150 ₽</strong></li><li><span>Хром</span><strong>170 ₽</strong></li><li><span>С конфетти</span><strong>180 ₽</strong></li><li><span>С декоративной лентой</span><strong>190 ₽</strong></li></ul><p class="note">Однотонные: классический пастель и металлик. Декоративная лента: органза, шифон или волна.</p></article>
+          <article class="price-card featured"><h3>Фольгированные</h3><ul><li><span>Сердце или звезда до 45 см</span><strong>350 ₽</strong></li><li><span>До 76 см, с надписью</span><strong>2 300 ₽</strong></li><li><span>До 90 см, с надписью</span><strong>2 800 ₽</strong></li><li><span>Цифра 102 см</span><strong>1 000 ₽</strong></li></ul><p class="note">Другие фигуры — по запросу.</p></article>
+          <article class="price-card"><h3>Особенные</h3><ul><li><span>Зеркальный гигант с надписью</span><strong>2 800 ₽</strong></li><li><span>Баблс с наполнением</span><strong>2 100 ₽</strong></li><li><span>Шар-сюрприз на гендер-пати</span><strong>3 100 ₽</strong></li><li><span>Шар-сюрприз на девичник</span><strong>3 500 ₽</strong></li></ul><p class="note">Наполнение баблс: перья, конфетти или пенопласт. Для девичника внутри — сердце с новой фамилией.</p></article>
+          <article class="price-card"><h3>Коробка-сюрприз</h3><ul><li><span>60 × 60 см</span><strong>3 900 ₽</strong></li></ul><p class="note">Мини-шарики внутри. Бант и надпись входят в стоимость.</p></article>
+          <article class="price-card"><h3>Букеты из шаров</h3><ul><li><span>Композиция</span><strong>от 1 800 ₽</strong></li></ul><p class="note">Состав и итоговую стоимость Юлия уточнит после обсуждения заказа.</p></article>
+          <article class="price-card"><h3>Нужен свой вариант?</h3><p>Можно собрать композицию под повод и желаемые цвета.</p><p class="note">Фотографии готовых работ добавим, когда Юлия их передаст.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="delivery" id="delivery">
+      <div class="shell delivery-grid">
+        <div class="panel"><p class="eyebrow">Получение заказа</p><h3>Доставка или самовывоз</h3><div class="facts"><div class="fact"><b>Ленинский городской округ</b><span>Видное, Лопатино, Молоково и другие населённые пункты округа.</span></div><div class="fact"><b>400 ₽</b><span>Стоимость доставки при заказе до 4 500 ₽.</span></div><div class="fact"><b>Бесплатно</b><span>При заказе от 4 500 ₽.</span></div><div class="fact"><b>Самовывоз</b><span>Видное, ул. Ольховая, 6.</span></div></div></div>
+        <div class="panel soft"><p class="eyebrow">Перед публикацией</p><h3>Скидки пока уточняем</h3><p>Юлия прислала несколько условий, но пока неясно, как они сочетаются и что именно означает «кешбэк».</p><details><summary>Посмотреть черновик условий</summary><div class="details-body"><ul><li>первый заказ — 10%;</li><li>от 20 шаров — 10%;</li><li>от 30 шаров — 30%;</li><li>самовывоз — 15%;</li><li>скидки не суммируются;</li><li>кешбэк за отметку в соцсети — 10%.</li></ul><div class="warning">Кешбэк 15% за отзыв на Яндексе в сайт не добавлен: это условие нужно пересмотреть по правилам Яндекс Бизнеса.</div></div></details></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="shell about-grid">
+        <div class="portrait-placeholder"><div><strong>Здесь будет фото Юлии</strong><br>Добавим оригинал без изменения лица и черт внешности.</div></div>
+        <div class="about-copy"><p class="eyebrow">Человек за заказом</p><h2>Познакомимся?</h2><p>[НУЖЕН ФАКТ: короткий текст Юлии о себе, опыте и подходе к заказам]</p><p>После получения фотографии можно добавить спокойную анимацию появления, не меняя само изображение.</p></div>
+      </div>
+    </section>
+
+    <section id="order">
+      <div class="shell order-card"><div><p class="eyebrow">Заказ</p><h2>Расскажите, какой праздник готовите</h2><p>Контакт и точный способ оформления заказа подключим после согласования шаблона.</p></div><div class="contact-box"><b>[НУЖЕН ФАКТ: куда вести кнопку]</b><span>WhatsApp, Telegram, Instagram или другой способ связи.</span></div></div>
+    </section>
+  </main>
+
+  <footer><div class="shell"><span>© ШарыВГороде · balloons.dreams_</span><span>Рабочий шаблон, не для публикации</span></div></footer>
+</body>
+</html>
