@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Черновик сайта «ШарыВГороде». Воздушные шары в Видном и Ленинском городском округе.">
-  <title>ШарыВГороде — воздушные шары в Видном</title>
+  <meta name="description" content="Черновик сайта «ШарыВгороде». Воздушные шары в Видном и Ленинском городском округе.">
+  <title>ШарыВгороде — воздушные шары в Видном</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
@@ -155,17 +155,15 @@
 
     .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 32px; align-items: stretch; }
     .about-grid > * { min-width: 0; }
-    .portrait-placeholder {
+    .portrait-photo {
       min-height: 470px;
-      display: grid;
-      place-items: center;
-      padding: 28px;
-      border: 1px dashed #b49d99;
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
       border-radius: 0;
-      color: var(--muted);
       background: #f4f4f2;
-      text-align: center;
     }
+    .portrait-photo img { width: 100%; height: 100%; min-height: 470px; object-fit: cover; object-position: center; }
     .about-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(20px, 4vw, 54px); }
     .about-copy p { max-width: 570px; color: var(--muted); font-size: 18px; }
 
@@ -186,7 +184,6 @@
     .contact-box b { display: block; margin-bottom: 8px; }
     .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
     .contact-actions .button { min-height: 46px; }
-    .button.is-disabled { cursor: default; opacity: .58; }
     footer { padding: 0 0 44px; color: var(--muted); font-size: 13px; }
     footer .shell { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding-top: 24px; }
 
@@ -199,7 +196,7 @@
       .hero-copy { padding: 80px 24px; }
       .section-head, .delivery-grid, .about-grid, .order-card { grid-template-columns: 1fr; }
       .price-grid { grid-template-columns: 1fr 1fr; }
-      .portrait-placeholder { min-height: 340px; }
+      .portrait-photo, .portrait-photo img { min-height: 340px; }
     }
     @media (max-width: 590px) {
       .shell { width: min(100% - 24px, 1160px); }
@@ -234,7 +231,7 @@
 <body>
   <header>
     <nav class="shell" aria-label="Основная навигация">
-      <a class="brand" href="#top" aria-label="ШарыВГороде — наверх"><img src="assets/logo-clean.png" alt="Логотип «ШарыВГороде»: воздушный шар с глобусом"></a>
+      <a class="brand" href="#top" aria-label="ШарыВгороде — наверх"><img src="assets/logo-clean.png" alt="Логотип «ШарыВгороде»: воздушный шар с глобусом"></a>
       <div class="nav-links">
         <a href="#about">Обо мне</a><a href="#prices">Каталог</a><a href="#delivery">Доставка и цены</a><a href="#order">Контакты</a>
       </div>
@@ -250,7 +247,7 @@
         <img class="hero-balloon hero-balloon--gold" src="assets/balloon-gold-small.png" alt="" aria-hidden="true">
         <div class="hero-copy">
           <p class="eyebrow">balloons.dreams_ · Видное</p>
-          <h1>ШарыВГороде</h1>
+          <h1>ШарыВгороде</h1>
           <p class="lead">Шары, букеты и праздничные композиции с доставкой по Ленинскому городскому округу.</p>
           <div class="actions"><a class="button" href="#prices">Посмотреть цены</a><a class="button secondary" href="#order">Обсудить заказ</a></div>
           <p class="micro">Обработка и лента уже входят в стоимость обычных шаров.</p>
@@ -281,17 +278,17 @@
 
     <section id="about">
       <div class="shell about-grid">
-        <div class="portrait-placeholder"><div><strong>Здесь будет фото Юлии</strong><br>Добавим оригинал без изменения лица и черт внешности.</div></div>
-        <div class="about-copy"><p class="eyebrow">Человек за заказом</p><h2>Познакомимся?</h2><p>[НУЖЕН ФАКТ: короткий текст Юлии о себе, опыте и подходе к заказам]</p><p>После получения фотографии можно добавить спокойную анимацию появления, не меняя само изображение.</p></div>
+        <figure class="portrait-photo"><img src="assets/julia-about.jpg" alt="Юлия с композицией из воздушных шаров"></figure>
+        <div class="about-copy"><p class="eyebrow">Человек за заказом</p><h2>Познакомимся?</h2><p>Я в воздушном мире уже три года. Обучалась у ведущих аэродизайнеров. Создам для вас композицию по референсу из Pinterest или по вашей собственной идее.</p></div>
       </div>
     </section>
 
     <section id="order">
-      <div class="shell order-card"><div><p class="eyebrow">Заказ</p><h2>Расскажите, какой праздник готовите</h2><p>Напишите Юлии в удобном мессенджере — она уточнит детали и поможет собрать композицию.</p></div><div class="contact-box"><b>Юлия · +7 926 354-03-37</b><span>Выберите удобный способ связи.</span><div class="contact-actions"><a class="button" href="https://wa.me/79263540337" target="_blank" rel="noopener">WhatsApp</a><a class="button secondary" href="https://t.me/juliya_dmitriieva" target="_blank" rel="noopener">Telegram</a><span class="button secondary is-disabled" aria-label="MAX — ссылка появится позже">MAX</span></div></div></div>
+      <div class="shell order-card"><div><p class="eyebrow">Заказ</p><h2>Расскажите, какой праздник готовите</h2><p>Напишите Юлии в удобном мессенджере — она уточнит детали и поможет собрать композицию.</p></div><div class="contact-box"><b>Юлия · +7 926 354-03-37</b><span>Выберите удобный способ связи.</span><div class="contact-actions"><a class="button" href="https://wa.me/79263540337" target="_blank" rel="noopener">WhatsApp</a><a class="button secondary" href="https://t.me/juliya_dmitriieva" target="_blank" rel="noopener">Telegram</a><a class="button secondary" href="https://max.ru/u/f9LHodD0cOJfAR66_9ZwXVB_4ZtCULAhaodT0X5Xd1PddWeUDHMysUeYMJk" target="_blank" rel="noopener">MAX</a></div></div></div>
     </section>
   </main>
 
-  <footer><div class="shell"><span>© ШарыВГороде · balloons.dreams_</span><span>Рабочий шаблон, не для публикации</span></div></footer>
+  <footer><div class="shell"><span>© ШарыВгороде · balloons.dreams_</span><span>Рабочий шаблон, не для публикации</span></div></footer>
   <script>
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
       document.documentElement.classList.add('has-motion');
